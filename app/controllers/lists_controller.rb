@@ -2,10 +2,7 @@ class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
 
   def index
-    @lists = List.where(complete: false).page(params[:page]).per(5)
-  end
-
-  def new 
+    set_all_lists
     @list = List.new
   end
 
@@ -15,21 +12,20 @@ class ListsController < ApplicationController
     if @list.save
       redirect_to lists_path
     else
-      render :new
+      set_all_lists
+      render :index
     end
   end
 
   def show
   end
 
-  def edit
-  end
-
   def update
     if @list.update(list_params)
-      redirect_to list_path(@list)
+      redirect_to lists_path
     else
-      render :edit
+      set_all_lists
+      render :index
     end
   end
 
@@ -39,6 +35,10 @@ class ListsController < ApplicationController
   end
 
   private
+
+  def set_all_lists
+    @lists = List.where(complete: false).page(params[:page]).per(5)
+  end
 
   def set_list
     @list = List.find(params[:id])

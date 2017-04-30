@@ -1,12 +1,12 @@
-<% if @list.errors.present? %>
+<% if list.errors.present? %>
   <ul>
-    <% @list.errors.each do |error, message| %>
+    <% list.errors.each do |error, message| %>
       <li><%= "#{error.capitalize} #{message}" %></li>
     <% end %>
   </ul>
 <% end %>
 
-<%= form_for @list do |f| %>
+<%= form_for list do |f| %>
   <%= f.label "Title" %>
   <%= f.text_field :title %>
 
@@ -14,4 +14,9 @@
   <%= f.datetime_field :date %>
 
   <%= f.submit %>
+
+  <% unless list.new_record? %>
+    <%= link_to "Show", list_path(list) %>
+    <%= link_to "Delete", list_path(list), method: :delete, data: { confirm: "Are you sure?" } %>
+  <% end %>
 <% end %>
