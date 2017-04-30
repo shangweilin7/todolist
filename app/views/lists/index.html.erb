@@ -1,7 +1,9 @@
-<% @lists.each do |list| %>
-  <%= render "form", list: list %>
-<% end %>
+<div class="container">
+  <% @lists.each do |list| %>
+    <%= render "form", list: list %>
+  <% end %>
 
-<%= paginate @lists %>
+  <%= paginate @lists %>
 
-<%= render "form", list: @list %>
+  <%= render "form", list: @list %>
+</div>

@@ -7,16 +7,23 @@
 <% end %>
 
 <%= form_for list do |f| %>
-  <%= f.label "Title" %>
-  <%= f.text_field :title %>
+  <div class="form-group">
+    <%= f.label "Title" %>
+    <%= f.text_field :title, class: "form-control" %>  
+  </div>
+  
+  <div class="form-group">
+    <%= f.label "Date" %>
+    <%= f.datetime_field :date, class: "form-control" %>
+  </div>
+    
+  <div class="form-actions pull-right">
+    <%= f.submit class: "btn btn-success" %>  
 
-  <%= f.label "Date" %>
-  <%= f.datetime_field :date %>
-
-  <%= f.submit %>
-
-  <% unless list.new_record? %>
-    <%= link_to "Show", list_path(list) %>
-    <%= link_to "Delete", list_path(list), method: :delete, data: { confirm: "Are you sure?" } %>
-  <% end %>
+    <% unless list.new_record? %>
+      <%= link_to "Show", list_path(list), class: "btn btn-primary" %>
+      <%= link_to "Delete", list_path(list), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <% end %>
+  </div>
+  <div class="clearfix"></div>
 <% end %>
