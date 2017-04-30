@@ -2,7 +2,7 @@ class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
 
   def index
-    @lists = List.where(complete: false)
+    @lists = List.where(complete: false).page(params[:page]).per(5)
   end
 
   def new 
