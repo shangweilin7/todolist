@@ -1,0 +1,9 @@
+<%= form_for @list do |f| %>
+  <%= f.label "Title" %>
+  <%= f.text_field :title %>
+
+  <%= f.label "Date" %>
+  <%= f.datetime_field :date %>
+
+  <%= f.submit %>
+<% end %>
