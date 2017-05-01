@@ -42,7 +42,7 @@ class ListsController < ApplicationController
   private
 
   def set_all_lists
-    @lists = List.where(complete: false).page(params[:page]).per(5)
+    @lists = List.unfinished.page(params[:page]).per(5)
   end
 
   def set_list
