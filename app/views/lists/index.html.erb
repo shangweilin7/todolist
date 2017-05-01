@@ -1,4 +1,6 @@
 <div class="container">
+  <%= render "flash" %>
+
   <% @lists.each do |list| %>
     <%= render "form", list: list %>
   <% end %>

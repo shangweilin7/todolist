@@ -10,8 +10,10 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
 
     if @list.save
+      flash[:notice] = "新增成功"
       redirect_to lists_path
     else
+      flash[:alert] = "新增失敗"
       set_all_lists
       render :index
     end
@@ -22,8 +24,10 @@ class ListsController < ApplicationController
 
   def update
     if @list.update(list_params)
+      flash[:notice] = "更新成功"
       redirect_to lists_path
     else
+      flash[:alert] = "更新失敗"
       set_all_lists
       render :index
     end
@@ -31,6 +35,7 @@ class ListsController < ApplicationController
 
   def destroy
     @list.destroy
+    flash[:notice] = "刪除成功"
     redirect_to lists_path
   end
 
